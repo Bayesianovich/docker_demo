@@ -1,0 +1,21 @@
+1.创建并进入一个目录
+mkdir sshd
+cd sshd
+
+2.创建一个Dockerfile文件
+FROM centos:7
+LABEL The centos_sshd Project<hsc2333@outlook.com>
+RUN yum -y intall openssh-server net-tools -y 
+RUN echo 'root:admin123'|chpasswd 
+RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key 
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key 
+
+EXPOSE 22
+
+CMD [ "/usr/sbin/sshd","-D"]
+
+3. 利用build命令构建镜像
+  docker build -t centos_sshd:latest
+
+  
