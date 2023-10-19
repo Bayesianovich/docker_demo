@@ -1,6 +1,6 @@
 # 使用Docker Compose部署WordPress
 
-1.创建一个项目目录，并切换到改项目目录
+1.创建一个项目目录，并切换到该项目目录
 
 mkdir my_wordpress 
 
@@ -40,16 +40,17 @@ volumes:
 
 ```
 
-构建项目
+3. 构建项目
 
 docker-compose up -d
 
 
-
-在浏览器中打开WordPress
+4. 在浏览器中打开WordPress
 
 http://主机IP:9000
 
 第一次打开需注册
 
 ![image-20231019182540612](https://raw.githubusercontent.com/huangshoucheng/picBed/master/iamgeimage-20231019182540612.png)
+
+5.关闭docker-compose down 这会删除容器和默认网络，但会保留存储在卷中的WordPress数据库。要同时删除卷 添加 -volumes
